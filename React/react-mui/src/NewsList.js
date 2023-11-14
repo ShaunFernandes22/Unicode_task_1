@@ -4,12 +4,14 @@ import {useState, useEffect} from 'react';
 import Button from '@mui/material/Button';
 import Paginate from './Paginate';
 
+require('dotenv').config()
+
 const NewsList = () => {
     const [articles, setArticles] = useState([])
 
 useEffect(() => {
     const getArticles = async () =>{
-        const response = await axios.get('https://newsapi.org/v2/top-headlines?category=sports&apiKey=2019b5f94ee849b780ed0c111a4bf615')
+        const response = await axios.get('https://newsapi.org/v2/top-headlines?category=sports&apiKey=' +process.env.REACT_APP_NEWS_API_KEY)
         console.log(response)
         setArticles(response.data.articles)
     }
